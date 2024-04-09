@@ -21,10 +21,20 @@ public:
 		obj.str = nullptr;
 		size = obj.size;
 	}
-
+	MyString& operator=(MyString&& obj)
+	{
+		cout << "operator overload = move\n";
+		if (this != &obj) {
+			delete[] str;
+			str = obj.str;
+			obj.str = nullptr;
+			size = obj.size;
+		}
+		return *this;
+	}
 	void StrInput();
 	void Output();
-
+	
 	static int GetCount();
 	int GetSize() const;
 	char* GetStr() const;
